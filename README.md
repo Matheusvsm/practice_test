@@ -1,23 +1,23 @@
 ## Para executar o Docker
-```bash
+```bash```
 docker-compose up -d
 
 
-*Acesse o container do PHP com o seguinte comando:
+##Acesse o container do PHP com o seguinte comando:
 
 docker-compose exec app bash
 
-*Após acessar o container, execute:
+##Após acessar o container, execute:
 composer install
 php artisan migrate
 
 
-*Em seguida, adicione as dependências do NPM:
+##Em seguida, adicione as dependências do NPM:
 
 npm install
 npm run build
 
 
-*Para rodar o seeder, execute:
+##Para rodar o seeder, execute:
 
 php artisan db:seed
