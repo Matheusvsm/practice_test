@@ -7,17 +7,17 @@
                         <div class="col-md-6">
                             <div class="card card-primary">
                                 <div class="card-header">
-                                    <h3 class="card-title">Editar Motorista</h3>
+                                    <h3 class="card-title">Editar Transportadora</h3>
                                     <div class="card-tools">
-                                        <router-link to="/motorista" class="btn btn-danger">
+                                        <router-link to="/transportadora" class="btn btn-danger">
                                             Cancelar
                                         </router-link>
                                     </div>
                                 </div>
                                 <form @submit.prevent="update" class="card-body">
                                     <div class="input-group mb-3">
-                                        <input type="text" v-model="form.nome_motorista" class="form-control"
-                                            placeholder="Nome do Motorista"/>
+                                        <input type="text" v-model="form.nome_transportadora" class="form-control"
+                                            placeholder="Nome da transportadora" required />
                                         <div class="input-group-append">
                                             <div class="input-group-text">
                                                 <span class="fas fa-user"></span>
@@ -25,25 +25,8 @@
                                         </div>
                                     </div>
                                     <div class="input-group mb-3">
-                                        <input type="text" v-model="form.cpf_motorista" class="form-control"
-                                            placeholder="CPF do Motorista" />
-                                        <div class="input-group-append">
-                                            <div class="input-group-text">
-                                                <span class="fas fa-id-card"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="input-group mb-3">
-                                        <input type="text" v-model="form.email_motorista" class="form-control"
-                                            placeholder="Email do Motorista"/>
-                                        <div class="input-group-append">
-                                            <div class="input-group-text">
-                                                <span class="fas fa-id-card"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="input-group mb-3">
-                                        <input type="date" v-model="form.data_nascimento_motorista" class="form-control"/>
+                                        <input type="text" v-model="form.cnpj_transportadora" class="form-control"
+                                            placeholder="CNPJ da Transportadora" required />
                                         <div class="input-group-append">
                                             <div class="input-group-text">
                                                 <span class="fas fa-id-card"></span>
@@ -69,27 +52,26 @@
 
 <script>
 export default {
-    name: "EditMotorista",
+    name: "EditTransportadora",
     data() {
         return {
             form: {
-                id: null,
-                nome_motorista: "",
-                cpf_motorista: "",
-                data_nascimento_motorista: "",
-                email_motorista: ""
-            },
+                id: null, // ID da transportadora
+                nome_transportadora: '',
+                cnpj_transportadora: ''
+            }
         };
     },
     mounted() {
-        this.getMotorista();
+        // Carregar os dados existentes da transportadora usando o ID da URL, por exemplo
+        this.getTransportadora();
     },
     methods: {
-        getMotorista() {
+        getTransportadora() {
             const id = this.$route.params.id;
             const token = localStorage.getItem('token');
 
-            axios.get(`/api/motoristas/${id}`, {
+            axios.get(`/api/transportadoras/${id}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -98,24 +80,23 @@ export default {
                     this.form = response.data;
                 })
                 .catch(error => {
-                    console.error('Erro ao carregar motorista:', error);
+                    console.error('Erro ao carregar transportadora:', error);
                 });
         },
         update() {
             const token = localStorage.getItem('token');
-            axios.put(`/api/motoristas/${this.form.id}`, this.form, {
+            axios.put(`/api/transportadoras/${this.form.id}`, this.form, {
                 headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json'
+                    'Authorization': `Bearer ${token}`
                 }
             })
                 .then(response => {
 
-                    this.$router.push('/motorista');
-                    alert('Motorista atualizado com sucesso!');
+                    this.$router.push('/transportadora');
+                    alert('Transportadora atualizada com sucesso!');
                 })
                 .catch(error => {
-                    console.error('Erro ao atualizar motorista:', error);
+                    console.error('Erro ao atualizar transportadora:', error);
                 });
         }
     }

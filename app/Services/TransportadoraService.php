@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Transportadora;
+use Illuminate\Support\Facades\Log;
 
 class TransportadoraService
 {
@@ -13,6 +14,8 @@ class TransportadoraService
 
     public function create(array $data)
     {
+        Log::info('cadastrando: ' . json_encode($data));
+        $data['status_transportadora'] = 1;
         return Transportadora::create($data);
     }
 

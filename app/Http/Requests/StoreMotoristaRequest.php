@@ -25,7 +25,7 @@ class StoreMotoristaRequest extends FormRequest
             'nome_motorista' => 'required|string|max:100',
             'cpf_motorista' => 'required|string|size:11|unique:motoristas',
             'data_nascimento_motorista' => 'required|date',
-            'email_motorista' => 'sometimes|nullable|email|max:100',
+            'email_motorista' => 'required|nullable|email|unique:motoristas',
         ];
     }
     public function messages()
@@ -40,7 +40,6 @@ class StoreMotoristaRequest extends FormRequest
             'data_nascimento_motorista.required' => 'A data de nascimento do motorista é obrigatória.',
             'data_nascimento_motorista.date' => 'A data de nascimento deve ser uma data válida.',
             'email_motorista.email' => 'O e-mail deve ser um endereço de e-mail válido.',
-            'email_motorista.max' => 'O e-mail não pode exceder 100 caracteres.',
         ];
     }
 }

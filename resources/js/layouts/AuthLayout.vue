@@ -3,7 +3,7 @@
     <div class="login-box">
       <div class="card card-outline card-primary">
         <div class="card-header text-center">
-          <a href="../../index2.html" class="h1"><b>Admin</b>LTE</a>
+          <a href="../../index2.html" class="h1"><b>Projeto</b>Teste</a>
         </div>
         <RouterView />
       </div>

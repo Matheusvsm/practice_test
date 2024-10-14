@@ -24,7 +24,6 @@ class StoreTransportadoraRequest extends FormRequest
         return [
             'nome_transportadora' => 'required|string|max:100',
             'cnpj_transportadora' => 'required|string|size:14|unique:transportadoras',
-            'status_transportadora' => 'required|integer',
         ];
     }
     public function messages()
@@ -36,8 +35,6 @@ class StoreTransportadoraRequest extends FormRequest
             'cnpj_transportadora.required' => 'O CNPJ da transportadora é obrigatório.',
             'cnpj_transportadora.size' => 'O CNPJ deve ter 14 caracteres.',
             'cnpj_transportadora.unique' => 'Já existe uma transportadora com esse CNPJ.',
-            'status_transportadora.required' => 'O status da transportadora é obrigatório.',
-            'status_transportadora.integer' => 'O status da transportadora deve ser um número inteiro.',
         ];
     }
 }

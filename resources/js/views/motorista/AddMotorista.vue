@@ -84,6 +84,9 @@ export default {
     },
     methods: {
         async add() {
+            const formattedDate = this.formatDate(this.form.data_nascimento_motorista);
+            this.form.data_nascimento_motorista = formattedDate;
+
             if (!this.form.nome_motorista) {
                 alert("O nome do motorista é obrigatório.");
                 return;
@@ -106,13 +109,8 @@ export default {
 
             try {
                 const token = localStorage.getItem('token');
-                const response = await axios.post('/api/motoristas', {
-                    nome_motorista: this.form.nome_motorista,
-                    email_motorista: this.form.email_motorista,
-                    cpf_motorista: this.form.cpf_motorista,
-                    data_nascimento_motorista: this.form.data_nascimento_motorista,
-
-                }, {
+                console.log('Dados do formulário: ', this.form);
+                const response = await axios.post('/api/motoristas', this.form, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -124,11 +122,22 @@ export default {
                 if (error.response && error.response.data.errors) {
                     alert("Erros de Validacao" + JSON.stringify(error.response.data.errors));
                 } else {
-                    alert("ocorreu um erro durante o registro");
+                    alert("ocorreu um erro durante o registro" + JSON.stringify(error.response.data.errors));
                 }
             }
         },
+        formatDate(date) {
+            if (!date) return '';
+
+            const d = new Date(date);
+            const year = d.getFullYear();
+            const month = String(d.getMonth() + 1).padStart(2, '0');
+            const day = String(d.getDate()).padStart(2, '0');
+
+            return `${year}-${month}-${day}`;
+        }
     },
+
 
 }
 </script>

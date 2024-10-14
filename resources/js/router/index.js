@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
-import About from "../views/About.vue";
 import NotFound from "../views/NotFound.vue";
 import AuthLayout from "../layouts/AuthLayout.vue";
 import Login from "../views/auth/Login.vue";
@@ -8,6 +7,10 @@ import AppLayout from "../layouts/AppLayout.vue";
 import Register from "../views/auth/Register.vue";
 import ListAllMotorista from "../views/motorista/ListAllMotorista.vue";
 import AddMotorista from "../views/motorista/AddMotorista.vue";
+import ListAllTransportadora from "../views/transportadora/ListAllTransportadora.vue";
+import AddTransportadora from "../views/transportadora/AddTransportadora.vue";
+import EditTransportadora from "../views/transportadora/EditTransportadora.vue";
+import EditMotorista from "../views/motorista/EditMotorista.vue";
 
 const routes = [
     {
@@ -36,19 +39,34 @@ const routes = [
           component: Home
         },
         {
-          path: "about",
-          name: "About",
-          component: About
-        },
-        {
           path: "motorista",
           name:"ListAllMotorista",
-          component: ListAllMotorista, // Listar todos os motoristas
+          component: ListAllMotorista, 
         },
         {
-          path: "motorista/add", // Adicionar motorista
+          path: "motorista/add", 
           name: "AddMotorista",
           component: AddMotorista
+        },
+        {
+          path: "motorista/:id/edit", 
+          name: "EditMotorista",
+          component: EditMotorista
+        },
+        {
+          path: "transportadora",
+          name:"ListAllTransportadora",
+          component: ListAllTransportadora, 
+        },
+        {
+          path: "transportadora/add", 
+          name: "AddTransportadora",
+          component: AddTransportadora
+        },
+        {
+          path: "transportadora/:id/edit", 
+          name: "EditTransportadora",
+          component: EditTransportadora
         }
       ]
     },

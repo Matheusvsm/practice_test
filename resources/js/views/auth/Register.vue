@@ -1,10 +1,10 @@
 <template>
     <div class="register-box">
         <div class="card-body">
-            <p class="login-box-msg">Register a new membership</p>
+            <p class="login-box-msg">Criar novo usuario</p>
             <form @submit.prevent="register">
                 <div class="input-group mb-3">
-                    <input type="text" v-model="form.name" class="form-control" placeholder="name" required />
+                    <input type="text" v-model="form.name" class="form-control" placeholder="nome" required />
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-user"></span>
@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="input-group mb-3">
-                    <input type="password" v-model="form.password" class="form-control" placeholder="Password"
+                    <input type="password" v-model="form.password" class="form-control" placeholder="senha"
                         required />
                     <div class="input-group-append">
                         <div class="input-group-text">
@@ -33,7 +33,7 @@
 
                 <div class="input-group mb-3">
                     <input type="password" v-model="form.confirmPassword" class="form-control"
-                        placeholder="Retype password" required />
+                        placeholder="confirmar senha" required />
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
@@ -43,12 +43,7 @@
 
                 <div class="row">
                     <div class="col-8">
-                        <div class="icheck-primary">
-                            <input type="checkbox" id="agreeTerms" v-model="form.agreeTerms" required />
-                            <label for="agreeTerms">
-                                I agree to the <a href="#">terms</a>
-                            </label>
-                        </div>
+                        
                     </div>
 
                     <div class="col-4">
@@ -59,7 +54,7 @@
                 </div>
             </form>
             <router-link to="/login" class="text-center">
-                I already have a membership
+                Já tenho cadastro
             </router-link>
         </div>
     </div>
@@ -78,19 +73,13 @@ export default {
                 email: "",
                 password: "",
                 confirmPassword: "",
-                agreeTerms: false,
             },
         };
     },
     methods: {
         async register() {
             if (this.form.password !== this.form.confirmPassword) {
-                alert("Passwords do not match");
-                return;
-            }
-
-            if (!this.form.agreeTerms) {
-                alert("You must agree to the terms");
+                alert("As senhas estao diferente");
                 return;
             }
 
